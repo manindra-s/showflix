@@ -4,7 +4,7 @@ ShowFlix is a Single Page Application that displays information about your favor
 On the home screen, you can see most popular shows based on their rating, according to their genres.
 You can click on any show to know more information related to the show. Also, you can search for your favorite shows in this application.
 
-# Framwork
+# Framework
 
 Though i have prior experience only in React JS, i have chosen to implement this in Vue JS as a challenge. My overall experience working with Vue JS is really good. This is an excellent framework which combines the some of the best features from different front end frameworks/libraries.
 
