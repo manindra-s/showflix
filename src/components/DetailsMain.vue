@@ -34,7 +34,7 @@ h1 {
   font-family: "Lobster", cursive;
   text-align: center;
   letter-spacing: 4px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .show-genres {
   text-align: left;

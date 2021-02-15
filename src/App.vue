@@ -18,6 +18,7 @@ export default {
 
 body {
   margin: 0px;
+  background-color: rgb(224, 224, 224);
 }
 #app {
   font-family: "EB Garamond", serif;

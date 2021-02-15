@@ -39,11 +39,15 @@
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/**.vue",
+      "**/*.{js,vue}",
       "!**/node_modules/**",
-      "!src/**/*.js",
-      "src/components/MainCard.vue"
-    ],
+      "!**/*.config.js",
+      "!**/vendor/**",
+       "!**/tests/e2e/**",
+      "!**/main.js",
+      "!**/coverage/**",
+      "!src/**/*.js"
+],
     "moduleFileExtensions": [
       "js",
       "json",

@@ -52,13 +52,6 @@ export default {
 .show-card:hover{
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
-/* .show-image > img {
-  min-width: 230px;
-  max-height: 280px;
-}
-.show-main {
-  min-width: 200px;
-} */
 h3,
 h4 {
   margin: 5px 8px 2px 8px;
@@ -73,5 +66,10 @@ h4 {
   color: #fff;
   background-color: rgb(172, 147, 6);
   padding: 1px 5px;
+}
+@media only screen and (max-device-width: 414px) {
+  .show-card {
+  border-bottom: 1px solid rgb(172, 147, 6);
+}
 }
 </style>

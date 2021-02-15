@@ -13,7 +13,7 @@
         <h4 class="cast-name" v-if="cast.name">{{ cast.name }}</h4>
       </div>
     </div>
-    <div class="no-data" v-else>No Cast Found</div>
+    <div class="no-data" v-else><h2>No Cast Found</h2></div>
   </div>
 </template>
 
@@ -46,6 +46,10 @@ h1 {
   width: 170px;
   height: 250px;
 }
+.no-data{
+  color: #fff;
+  text-align: left;
+  }
 @media only screen and (max-device-width: 414px) {
   h1 {
     text-align: center;

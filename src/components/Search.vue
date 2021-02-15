@@ -22,7 +22,8 @@
             <p v-if="result.name">{{ result.name }}</p>
           </div>
         <!-- </router-link> -->
-      </div></div>
+      </div>
+      </div>
       <div v-if="!loading && inputSearch.length > 2 && results.length == 0">No Results</div>
     </div>
   </div>
