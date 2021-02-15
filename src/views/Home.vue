@@ -101,7 +101,7 @@ export default {
 }
 .genre > h3 {
   text-align: left;
-  margin-left: 10px;
+  margin-left: 30px;
   font-weight: 700;
   font-size: 25px;
   text-transform: uppercase;

@@ -27,8 +27,11 @@ export default {
 h1 {
   margin: 0;
   font-family: "Lobster", cursive;
-  color: rgb(172, 147, 6);
   letter-spacing: 2px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: rgb(172, 147, 6);
 }
 @media only screen and (max-device-width: 414px) {
   .header {

@@ -39,23 +39,10 @@
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/*.{js,vue}",
+      "src/**/**.vue",
       "!**/node_modules/**",
-      "!src/**/*.js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "node_modules",
-      "test-config",
-      "interfaces",
-      "jestGlobalMocks.ts",
-      ".module.ts",
-      "<rootDir>/src/app/main.ts",
-      ".mock.ts",
-      "block-navigatio.js",
-      "prettify.js",
-      "sorter.js",
-      "showflix/coverage/lcov-report",
-      "babel.config.js"
+      "!src/**/*.js",
+      "src/components/MainCard.vue"
     ],
     "moduleFileExtensions": [
       "js",

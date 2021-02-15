@@ -8,9 +8,9 @@
         :key="index"
       >
         <div v-if="cast.image">
-          <img :src="cast.image.original || cast.image.medium" alt="Image" />
+          <img class="cast-image" :src="cast.image.original || cast.image.medium" alt="Image" />
         </div>
-        <h4 v-if="cast.name">{{ cast.name }}</h4>
+        <h4 class="cast-name" v-if="cast.name">{{ cast.name }}</h4>
       </div>
     </div>
     <div class="no-data" v-else>No Cast Found</div>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "CastDetails",
+  name: "Cast",
   props: {
     castInfo: Array,
   },
@@ -37,13 +37,14 @@ h1 {
   color: #fff;
   text-align: left;
   text-decoration: underline;
+  margin-left: 10px;
 }
 .cast-card {
   margin: 10px;
 }
 .cast-card > div > img {
-  width: 225px;
-  height: 300px;
+  width: 170px;
+  height: 250px;
 }
 @media only screen and (max-device-width: 414px) {
   h1 {

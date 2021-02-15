@@ -8,7 +8,7 @@
         :key="season.number"
       >
         <h3 class="season-title">Season {{ season.number }}</h3>
-        <h3><span>Episodes:</span> {{ season.episodeOrder || "NA" }}</h3>
+        <h3><span>Episodes:</span> <span class="episode">{{ season.episodeOrder || "NA" }}</span></h3>
         <h3><span>Premiere Date: </span>{{ season.premiereDate || "NA" }}</h3>
       </div>
     </div>
@@ -39,7 +39,7 @@ h1 {
   text-decoration: underline;
 }
 .season-card > h3 {
-  margin: 2px 10px;
+  margin: 2px 30px 2px 10px;
 }
 .season-title {
   background-color: #fff;

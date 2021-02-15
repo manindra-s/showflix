@@ -6,22 +6,22 @@ import {routes} from "../router/index.js";
 
 
 const showDetails = {
-    "id": 240,
-    "url": "http://www.tvmaze.com/shows/240/cops",
-    "name": "Cops",
+    "id": 180,
+    "url": "http://www.tvmaze.com/shows/180/firefly",
+    "name": "Firefly",
     "type": "Reality",
     "language": "English",
-    "genres": ["Action", "Crime"],
+    "genres": ["Action", "Drama"],
     "status": "Ended",
     "runtime": 30,
-    "premiered": "1989-03-11",
-    "officialSite": "http://www.cops.com",
+    "premiered": "2001-04-11",
+    "officialSite": "http://www.firefly.com",
     "schedule": {
         "time": "22:30",
         "days": ["Monday"]
     },
     "rating": {
-        "average": 7.8
+        "average": 8.5
     },
     "weight": 98,
     "network": {
@@ -43,11 +43,11 @@ const showDetails = {
         "medium": "http://static.tvmaze.com/uploads/images/medium_portrait/1/4185.jpg",
         "original": "http://static.tvmaze.com/uploads/images/original_untouched/1/4185.jpg"
     },
-    "summary": "<p><b>COPS</b> follows police officers, constables, and sheriff's deputies during patrols and various police activities by embedding camera crews with their units. The show's formula adheres to a classic <i>cinéma vérité</i> ethos. With no narration or scripted dialog, it depends entirely on the commentary of the officers and on the actions of the people with whom they come into contact.</p>",
+    "summary": "<p>Some Summary</p>",
     "updated": 1591767246,
     "_links": {
         "self": {
-            "href": "http://api.tvmaze.com/shows/240"
+            "href": "http://api.tvmaze.com/shows/180"
         },
         "previousepisode": {
             "href": "http://api.tvmaze.com/episodes/1859522"

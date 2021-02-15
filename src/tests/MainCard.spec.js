@@ -1,4 +1,4 @@
-import {shallowMount, mount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import { RouterLinkStub } from '@vue/test-utils';
 import MainCard from "../components/MainCard.vue";
 

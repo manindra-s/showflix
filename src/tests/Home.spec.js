@@ -3,6 +3,7 @@ import { RouterLinkStub } from '@vue/test-utils';
 import moxios from "moxios";
 import Home from "../views/Home.vue";
 
+
 const shows = [{
         "id": 1,
         "name": "Under the Dome",
@@ -156,17 +157,12 @@ describe('Renders Home Correctly', () => {
       }).then(function () {
         expect(wrapper.vm.shows.length).toBe(2);
         expect(wrapper.vm.popularShows.length).toBe(1);
+        expect(wrapper.findComponent({name:"MainCard"}).exists()).toBe(true);
         done()
       })
     })
   })
 
-  it("sorts shows correctly", () => {
-    wrapper.setData({
-      shows: shows,
-    });
-    expect(wrapper.vm.sortShows(shows)).toStrictEqual(showsSorted);
-  }); 
 
   it("gets genres correctly", () => {
     wrapper.setData({
@@ -201,4 +197,11 @@ describe('Renders Home Correctly', () => {
       })
     })
   })
+
+  it("sorts shows correctly", () => {
+    wrapper.setData({
+      shows: shows,
+    });
+    expect(wrapper.vm.sortShows(shows)).toStrictEqual(showsSorted);
+  }); 
 })

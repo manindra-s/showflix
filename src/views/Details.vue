@@ -46,7 +46,7 @@ export default {
   //beforeRouteUpdate is used to reuse the same component(details) but update the data if there is change in the route params.
   beforeRouteUpdate(to, from, next) {
     this.loadShowDetails(to.params.showId);
-    next();
+    next(); //if next is not specified, route doesnt change.
   },
   //loading the show details, cast details and season details of the show based on the id sent through route params.
   created() {

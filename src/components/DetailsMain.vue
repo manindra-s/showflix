@@ -2,12 +2,12 @@
   <div class="show-details">
     <div v-if="Object.keys(showInfo).length !== 0" class="top">
       <a :href="showInfo.officialSite" target="_blank"
-        ><h1>{{ showInfo.name }}</h1></a
+        ><h1 class="show-name">{{ showInfo.name }}</h1></a
       >
       <h3 class="show-genres">{{ showInfo.genres.join(" | ") }}</h3>
       <div class="details-row">
         <h3>Premiered: {{ showInfo.premiered }}</h3>
-        <h3>Status: {{ showInfo.status }}</h3>
+        <h3 class="show-status">Status: {{ showInfo.status }}</h3>
         <h3>Language: {{ showInfo.language }}</h3>
         <h3>Rating: {{ showInfo.rating.average }}</h3>
       </div>
@@ -46,10 +46,14 @@ h1 {
   flex-wrap: wrap;
   margin-top: 10px;
 }
+h3 {
+  margin-left: 10px;
+  }
 .details-row > h3 {
-  margin: 5px 30px 5px 0px;
+  margin: 5px 30px 5px 10px;
 }
 .summary {
+  margin: 16px 10vw;
   padding: 10px;
   background-color: #fff;
   color: #000;
