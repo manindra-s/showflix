@@ -15,10 +15,12 @@
       v-closable="{ exclude: ['search'], handler: 'closeResult' }"
     >
       <div class="result" v-for="(result, index) in results" :key="index">
-        <router-link :to="{ name: 'Details', params: { showId: result.id } }">
+        <!-- <router-link :to="{ name: 'Details', params: { showId: result.id } }"> -->
+          <div class="data-result" @click="handleSearch(result.id)">
           <img v-if="result.image" :src="result.image.medium" alt="thumbnail" />
           <p v-if="result.name">{{ result.name }}</p>
-        </router-link>
+          </div>
+        <!-- </router-link> -->
       </div>
     </div>
   </div>
@@ -58,6 +60,11 @@ export default {
         });
       this.loading = false;
     }, 500),
+    handleSearch: function(id){
+      this.inputSearch = "";
+      this.$router.push({ name: 'Details', params: { showId: id } });
+      this.results = [];
+    },
     //function corresponding to v-closable. Resetting the search query to close the search result on outside clicks.
     closeResult: function() {
       this.inputSearch = "";
@@ -91,6 +98,7 @@ export default {
   border-radius: 5px;
   max-height: 400px;
   overflow-y: auto;
+  cursor: pointer;
 }
 .result > a {
   text-align: center;

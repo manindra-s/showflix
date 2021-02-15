@@ -40,7 +40,8 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{js,vue}",
-      "!**/node_modules/**"
+      "!**/node_modules/**",
+      "!src/**/*.js"
     ],
     "coveragePathIgnorePatterns": [
       "node_modules",

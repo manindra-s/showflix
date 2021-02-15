@@ -155,7 +155,6 @@ describe('Renders Home Correctly', () => {
         response: shows
       }).then(function () {
         expect(wrapper.vm.shows.length).toBe(2);
-        console.log(wrapper.vm.popularShows)
         expect(wrapper.vm.popularShows.length).toBe(1);
         done()
       })
@@ -188,4 +187,18 @@ describe('Renders Home Correctly', () => {
     });
     expect(wrapper.findComponent({name:"MainCard"}).exists()).toBe(false);
   });
+
+  it('test to check api error response', (done) => {
+    moxios.wait(function () {
+      let request = moxios.requests.mostRecent()
+      request.respondWith({
+        status: 400,
+        response: "error"
+      }).then(function () {
+        expect(wrapper.vm.error).not.toBeNull();
+        expect(wrapper.find('.data-error').text()).toContain( "Something is Not Quite Right. Please Reload The Page")
+        done()
+      })
+    })
+  })
 })
