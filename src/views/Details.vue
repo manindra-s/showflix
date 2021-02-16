@@ -2,14 +2,14 @@
   <div>
     <Header />
     <!-- Checking if showInfo object has data-->
-    <div v-if="Object.keys(showInfo).length > 0">
-      <div
+    <div v-if="Object.keys(showInfo).length > 0 && showInfo.image.original != null && !loading">
+      <div 
         class="details"
         :style="{
           backgroundImage: `linear-gradient(
       rgba(0, 0, 0, 0.85),
       rgba(0, 0, 0, 0.85)
-    ),url(${showInfo.image.original})`,
+    ),url(${showInfo.image.original})` ,
         }"
       >
         <!-- Rendering season details, cast details of a show through DetailsMain, SeasonDetails, CastDetails components-->
@@ -18,7 +18,10 @@
         <Cast :castInfo="castInfo" />
       </div>
     </div>
-  </div>
+    <!-- <div v-else>
+      <h1>No Information Related To The Show Exists</h1>
+    </div> -->
+    </div>
 </template>
 <script>
 import Header from "../components/Header";
@@ -41,6 +44,7 @@ export default {
       showInfo: {},
       castInfo: [],
       seasonInfo: [],
+      loading: 'true'
     };
   },
   //beforeRouteUpdate is used to reuse the same component(details) but update the data if there is change in the route params.
@@ -54,6 +58,7 @@ export default {
   },
   methods: {
     loadShowDetails: async function(id) {
+      this.loading = 'true'
       await showDetails(id).then(({ data }) => (this.showInfo = data));
       //fetching and extracting cast person information from cast details.
       await castDetails(id).then(
@@ -61,6 +66,7 @@ export default {
       );
       //fetching all season details of the show.
       await seasonDetails(id).then(({ data }) => (this.seasonInfo = data));
+      this.loading = false;
     },
   },
 };

@@ -62,7 +62,7 @@ export default {
           this.error = err;
         });
       this.loading = false;
-    }, 500),
+    }, 200),
     handleSearch: function(id){
       this.inputSearch = "";
       this.results = [];

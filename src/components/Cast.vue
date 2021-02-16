@@ -54,5 +54,15 @@ h1 {
   h1 {
     text-align: center;
   }
+  .cast {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  color: #fff;
+}
+  .cast-card > div > img {
+  width: 100px;
+  height: 150px;
+}
 }
 </style>

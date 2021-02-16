@@ -185,6 +185,7 @@ describe('Renders Home Correctly', () => {
   });
 
   it('test to check api error response', (done) => {
+    const mockMethod = jest.spyOn(Home.methods, 'sortShows')
     moxios.wait(function () {
       let request = moxios.requests.mostRecent()
       request.respondWith({
@@ -193,6 +194,7 @@ describe('Renders Home Correctly', () => {
       }).then(function () {
         expect(wrapper.vm.error).not.toBeNull();
         expect(wrapper.find('.data-error').text()).toContain( "Something is Not Quite Right. Please Reload The Page")
+        expect(mockMethod).not.toHaveBeenCalled()
         done()
       })
     })

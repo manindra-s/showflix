@@ -56,5 +56,8 @@ h1 {
   h1 {
     text-align: center;
   }
+  .season-card > h3 {
+  margin: 2px 10px;
+}
 }
 </style>
