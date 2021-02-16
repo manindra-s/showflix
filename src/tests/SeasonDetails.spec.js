@@ -23,7 +23,4 @@ describe('Renders Season Details Correctly', () => {
         it('displays episode count correctly', () => {
             expect(wrapper.find('.episode').text()).toContain('13')
         })
-        // it('displays name correctly', () => {
-        //     expect(wrapper.find('.season-title').text()).toContain('Season 1')
-        // })
     })

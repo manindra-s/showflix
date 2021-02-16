@@ -55,6 +55,42 @@ const showDetails = {
     }
 }
 
+const showDetailsOriginal = {
+    "id": 180,
+    "url": "http://www.tvmaze.com/shows/180/firefly",
+    "name": "Firefly",
+    "type": "Reality",
+    "language": "English",
+    "genres": ["Action", "Drama"],
+    "status": "Ended",
+    "premiered": "2001-04-11",
+    "officialSite": "http://www.firefly.com",
+    "rating": {
+        "average": 8.5
+    },
+    "webChannel": null,
+    "image": null,
+    "summary": "<p>Some Summary</p>",
+}
+
+const showDetailsMedium = {
+    "id": 180,
+    "url": "http://www.tvmaze.com/shows/180/firefly",
+    "name": "Firefly",
+    "type": "Reality",
+    "language": "English",
+    "genres": ["Action", "Drama"],
+    "status": "Ended",
+    "premiered": "2001-04-11",
+    "officialSite": "http://www.firefly.com",
+    "rating": {
+        "average": 8.5
+    },
+    "webChannel": null,
+    "image": {"medium": "http://static.tvmaze.com/uploads/images/medium_portrait/1/4185.jpg"},
+    "summary": "<p>Some Summary</p>",
+}
+
 const castDetails = {
     "person": {
         "id": 35596,
@@ -96,8 +132,10 @@ const castDetails = {
     "voice": true
 }
 
-const seasonDetails = [{"id":1,"number":1,"name":"","episodeOrder":13,"premiereDate":"2013-06-24","endDate":"2013-09-16"},
-{"id":2,"number":2,"name":"","episodeOrder":13,"premiereDate":"2014-06-24","endDate":"2014-09-16"}]
+const seasonDetails = [
+    {"id":1,"number":1,"name":"","episodeOrder":13,"premiereDate":"2013-06-24","endDate":"2013-09-16"},
+    {"id":2,"number":2,"name":"","episodeOrder":13,"premiereDate":"2014-06-24","endDate":"2014-09-16"}
+]
 
 
 const localVue = createLocalVue();
@@ -119,15 +157,15 @@ describe('Renders Details Correctly', () => {
         wrapper.destroy();
       });
 
-      it('should trigger a beforeRouteUpdate event', function () {
-        const beforeRouteUpdate = wrapper.vm.$options.beforeRouteUpdate[0];
-        let nextFun = jest.fn();
-        beforeRouteUpdate.call(wrapper.vm, {
-            params: 123
-        }, "fromObj", nextFun);
+      it('check beforeRouteUpdate event', function () {
+        const routeUpdate = wrapper.vm.$options.beforeRouteUpdate[0];
+        let next = jest.fn();
+        routeUpdate.call(wrapper.vm, {
+            params: 180
+        }, "{}", next);
     });
 
-    it("getting show list works", (done) => {
+    it("fetching show details correctly", (done) => {
         expect(Object.keys(wrapper.vm.showInfo).length).toBe(0)
         expect(wrapper.vm.castInfo.length).toBe(0)
         expect(wrapper.vm.seasonInfo.length).toBe(0)
@@ -163,4 +201,19 @@ describe('Renders Details Correctly', () => {
                 
         });
     });
+
+    it("gets background image correctly", () => {
+        wrapper.vm.setBackgroundImage(showDetails)
+        expect(wrapper.vm.imageSrc).toBe("http://static.tvmaze.com/uploads/images/original_untouched/1/4185.jpg");
+      }); 
+
+      it("no background image if show doesnt have image", () => {
+        wrapper.vm.setBackgroundImage(showDetailsOriginal)
+        expect(wrapper.vm.imageSrc).toBe("");
+      }); 
+
+      it("medium background image loaded if show doesnt have original image", () => {
+        wrapper.vm.setBackgroundImage(showDetailsMedium)
+        expect(wrapper.vm.imageSrc).toBe("http://static.tvmaze.com/uploads/images/medium_portrait/1/4185.jpg");
+      }); 
     });

@@ -1,4 +1,4 @@
-import {shallowMount, mount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import { RouterLinkStub } from '@vue/test-utils';
 import moxios from "moxios";
 import Home from "../views/Home.vue";
@@ -148,7 +148,7 @@ describe('Renders Home Correctly', () => {
         expect(wrapper.findComponent({name:"Header"}).exists()).toBe(true);
     })
 
-    it('test to check api', (done) => {
+    it('check api response and state update', (done) => {
     moxios.wait(function () {
       let request = moxios.requests.mostRecent()
       request.respondWith({
@@ -163,13 +163,13 @@ describe('Renders Home Correctly', () => {
     })
   })
 
-
   it("gets genres correctly", () => {
     wrapper.setData({
       shows: shows,
     });
     expect(wrapper.vm.genreTitles).toStrictEqual(genres);
   });
+
   it("gets shows by genres correctly", () => {
     wrapper.setData({
       shows: shows,
@@ -203,6 +203,13 @@ describe('Renders Home Correctly', () => {
   it("sorts shows correctly", () => {
     wrapper.setData({
       shows: shows,
+    });
+    expect(wrapper.vm.sortShows(shows)).toStrictEqual(showsSorted);
+  }); 
+
+  it("sorts shows correctly if shows are already in correct order", () => {
+    wrapper.setData({
+      shows: showsSorted,
     });
     expect(wrapper.vm.sortShows(shows)).toStrictEqual(showsSorted);
   }); 

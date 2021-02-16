@@ -59,12 +59,12 @@ describe("Search performs as expected", () => {
         moxios.uninstall();
     });
 
-    it("has a search input", () => {
+    it("has a search input box present", () => {
         let searchBox = wrapper.find('input[type="text"]');
         expect(searchBox.exists()).toBe(true);
     })
 
-    it("input data is correct", () => {
+    it("search query is correctly modeled to variable", () => {
         let searchBox = wrapper.find('input[type="text"]');
         searchBox.setValue("suits");
         expect(wrapper.vm.inputSearch).toBe("suits");
@@ -86,7 +86,7 @@ describe("Search performs as expected", () => {
                     expect(wrapper.vm.results.length).toBe(3);
                     done();
                 })
-        }, 600);
+        }, 400);
     });
 
     it("no results if input search is less than 3 in length", () => {
@@ -96,19 +96,7 @@ describe("Search performs as expected", () => {
         expect(mockMethod).not.toHaveBeenCalled()
     })
 
-    // it("handleSearch called on result click", () => {
-    //     const mockMethod = jest.spyOn(Search.methods, 'handleSearch')
-    //     let wrapper = mount(Search)
-    //     wrapper.setData({
-    //         inputSearch: "suit",
-    //         results: searchResults,
-    //         loading: false
-    //       });
-    //     wrapper.find('.data-result').trigger('click');
-    //     expect(mockMethod).toHaveBeenCalled()
-    // })
-
-    it("errors out if no response from api", (done) => {
+    it("errors out if no response from api after search", (done) => {
         let searchBox = wrapper.find('input[type="text"]');
         searchBox.setValue("suits");
 
@@ -124,7 +112,7 @@ describe("Search performs as expected", () => {
                     expect(wrapper.vm.error).not.toBeNull()
                     done();
                 })
-        }, 600);
+        }, 400);
     });
 
     it("resetting input search after clicking on the result", () => {
