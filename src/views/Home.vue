@@ -62,7 +62,6 @@ export default {
   computed: {
     genreTitles() {
       const filterGenres = this.shows.map((shows) => shows.genres);
-      // const genres = filterGenres.flat();
       return Array.from(new Set(filterGenres.flat())); //returning list of unique genres from all shows
     },
     showGenres() {

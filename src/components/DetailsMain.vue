@@ -38,6 +38,7 @@ h1 {
 }
 .show-genres {
   text-align: left;
+  margin-left: 20px;
 }
 .details-row {
   display: flex;
@@ -46,14 +47,11 @@ h1 {
   flex-wrap: wrap;
   margin-top: 10px;
 }
-h3 {
-  margin-left: 10px;
-  }
 .details-row > h3 {
-  margin: 5px 30px 5px 10px;
+  margin: 5px 30px 5px 20px;
 }
 .summary {
-  margin: 16px 10vw;
+  margin: 20px;
   padding: 10px;
   background-color: #fff;
   color: #000;
@@ -81,6 +79,7 @@ a:active {
   }
   .show-genres {
     text-align: center;
+    margin-left: 0px;
   }
   h1 {
     text-align: center;

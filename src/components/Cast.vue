@@ -13,7 +13,7 @@
         <h4 class="cast-name" v-if="cast.name">{{ cast.name }}</h4>
       </div>
     </div>
-    <div class="no-data" v-else><h2>No Cast Found</h2></div>
+    <div class="no-data" v-else><h2>No Cast Details Found</h2></div>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ h1 {
   color: #fff;
   text-align: left;
   text-decoration: underline;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 .cast-card {
   margin: 10px;
@@ -49,10 +49,12 @@ h1 {
 .no-data{
   color: #fff;
   text-align: left;
+  margin-left: 20px;
   }
 @media only screen and (max-device-width: 414px) {
-  h1 {
+  h1,h2 {
     text-align: center;
+    margin-left: 0px;
   }
   .cast {
   display: grid;

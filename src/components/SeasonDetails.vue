@@ -35,11 +35,11 @@ export default {
 h1 {
   color: #fff;
   text-align: left;
-  margin-left: 10px;
+  margin-left: 20px;
   text-decoration: underline;
 }
 .season-card > h3 {
-  margin: 2px 30px 2px 10px;
+  margin: 2px 30px 2px 20px;
 }
 .season-title {
   background-color: #fff;
