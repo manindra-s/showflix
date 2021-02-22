@@ -23,7 +23,7 @@
           {{ genre.title }}
         </h3>
         <div>
-          <MainCard v-bind:popularShows="genre.shows.slice(0, 10)" />
+          <MainCard v-bind:popularShows="genre.shows.slice(0, 12)" />
         </div>
       </div>
     </div>
@@ -31,10 +31,10 @@
 </template>
 
 <script>
-import Header from "../components/Header";
-import MainCard from "../components/MainCard";
+import Header from "@/components/Header";
+import MainCard from "@/components/MainCard";
 
-import { allShows } from "../api.js";
+import { fetchAllShows } from "@/api.js";
 
 export default {
   name: "Home",
@@ -50,13 +50,13 @@ export default {
     };
   },
   //fetching all shows in the created hook and sorting them based on the rating into popularShows
-  async created() {
-    await allShows()
+  created() {
+    fetchAllShows()
       .then(({ data }) => (this.shows = data))
       .catch((err) => {
         this.error = err;
       });
-    this.popularShows = this.sortShows(this.shows).slice(1, 16);
+    this.popularShows = this.sortShows(this.shows).slice(1, 13);
   },
   //Extracting unique genres from the fetched shows using javascript's new Set method.
   computed: {
@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     //method to sort the shows based on their rating
-    sortShows: function(shows) {
+    sortShows(shows) {
       return shows
         .filter((show) => show.rating.average)
         .sort((a, b) => (a.rating.average < b.rating.average ? 1 : -1));
@@ -94,9 +94,11 @@ export default {
   position: relative;
 }
 .error {
-  position: absolute;
-  top: 30vh;
-  left: 25vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70vh;
 }
 .genre > h3 {
   text-align: left;

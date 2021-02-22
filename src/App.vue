@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app">
     <!-- Using keep-alive to retaing the scroll position and also cache the data-->
     <!-- Using $route.fullPath to let router-view replace the component instaed of reusing it-->
     <keep-alive><router-view :key="$route.fullPath"></router-view></keep-alive>
@@ -20,7 +20,7 @@ body {
   margin: 0px;
   background-color: rgb(224, 224, 224);
 }
-#app {
+.app {
   font-family: "EB Garamond", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

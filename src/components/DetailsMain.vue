@@ -1,17 +1,18 @@
 <template>
   <div class="show-details">
-    <div v-if="Object.keys(showInfo).length !== 0" class="top">
-      <a :href="showInfo.officialSite" target="_blank"
-        ><h1 class="show-name">{{ showInfo.name }}</h1></a
-      >
+    <div v-if="Object.keys(showInfo).length" class="top">
+      <h1 class="show-name">{{ showInfo.name }}</h1>
       <h3 class="show-genres">{{ showInfo.genres.join(" | ") }}</h3>
       <div class="details-row">
         <h3>Premiered: {{ showInfo.premiered }}</h3>
-        <h3 class="show-status">Status: {{ showInfo.status }}</h3>
-        <h3>Language: {{ showInfo.language }}</h3>
-        <h3>Rating: {{ showInfo.rating.average }}</h3>
+        <h3 class="show-status">Status: {{ showInfo.status || "NA" }}</h3>
+        <h3>Language: {{ showInfo.language || "NA" }}</h3>
+        <h3>
+          Rating:
+          <span class="show-rating">{{ showInfo.rating.average || "NA" }}</span>
+        </h3>
       </div>
-      <p class="summary" v-html="showInfo.summary"></p>
+      <p class="show-summary" v-html="showInfo.summary"></p>
     </div>
   </div>
 </template>
@@ -21,6 +22,9 @@ export default {
   name: "DetailsMain",
   props: {
     showInfo: Object,
+  },
+  data() {
+    return {};
   },
 };
 </script>
@@ -50,7 +54,7 @@ h1 {
 .details-row > h3 {
   margin: 5px 30px 5px 20px;
 }
-.summary {
+.show-summary {
   margin: 20px;
   padding: 10px;
   background-color: #fff;
@@ -60,13 +64,11 @@ h1 {
     rgba(255, 255, 255, 0.3) 0px 30px 60px -30px,
     rgba(245, 218, 191, 0.35) 0px -2px 6px 0px inset;
 }
-a,
-a:visited,
-a:hover,
-a:active {
-  text-decoration: underline;
-  cursor: pointer;
+.show-rating {
+  border-radius: 5px;
   color: #fff;
+  background-color: rgb(172, 147, 6);
+  padding: 1px 8px;
 }
 @media only screen and (max-device-width: 414px) {
   .details-row {

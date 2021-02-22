@@ -7,8 +7,13 @@
         v-for="season in seasonInfo"
         :key="season.number"
       >
-        <h3 class="season-title">Season {{ season.number }}</h3>
-        <h3><span>Episodes:</span> <span class="episode">{{ season.episodeOrder || "NA" }}</span></h3>
+        <a class="season-title" :href="season.url" target="_blank"
+          >Season {{ season.number }}</a
+        >
+        <h3>
+          <span>Episodes:</span>
+          <span class="episode">{{ season.episodeOrder || "NA" }}</span>
+        </h3>
         <h3><span>Premiere Date: </span>{{ season.premiereDate || "NA" }}</h3>
       </div>
     </div>
@@ -20,6 +25,9 @@ export default {
   name: "SeasonDetails",
   props: {
     seasonInfo: Array,
+  },
+  data() {
+    return {};
   },
 };
 </script>
@@ -38,7 +46,8 @@ h1 {
   margin-left: 20px;
   text-decoration: underline;
 }
-.season-card > h3 {
+.season-card > h3,
+a {
   margin: 2px 30px 2px 20px;
 }
 .season-title {
@@ -46,18 +55,32 @@ h1 {
   color: #000;
   border-radius: 5px;
   padding: 1px 3px;
+  font-weight: bold;
 }
+a,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  cursor: pointer;
+  color: #000;
+}
+
 @media only screen and (max-device-width: 414px) {
   .season-card {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    align-items: center;
+  }
+  .season-title {
+    max-width: 220px;
   }
   h1 {
     text-align: center;
   }
-  .season-card > h3 {
-  margin: 2px 10px;
-}
+  .season-card > h3,
+  a {
+    margin: 2px 10px;
+  }
 }
 </style>

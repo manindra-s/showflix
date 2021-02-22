@@ -16,8 +16,6 @@
     "lodash": "^4.17.20",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4",
-    "vue-closable": "0.0.3",
-    "vue-lodash": "^2.1.2",
     "vue-router": "^3.5.1"
   },
   "devDependencies": {
@@ -31,6 +29,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "eslint": "^6.7.2",
+    "eslint-plugin-jest": "^24.1.5",
     "eslint-plugin-vue": "^6.2.2",
     "moxios": "^0.4.0",
     "vue-jest": "^3.0.7",
@@ -39,15 +38,9 @@
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "**/*.{js,vue}",
-      "!**/node_modules/**",
-      "!**/*.config.js",
-      "!**/vendor/**",
-       "!**/tests/e2e/**",
-      "!**/main.js",
-      "!**/coverage/**",
-      "!src/**/*.js"
-],
+      "src/**/*.vue",
+      "!**/node_modules/**"
+    ],
     "moduleFileExtensions": [
       "js",
       "json",
@@ -56,16 +49,22 @@
     "transform": {
       ".*\\.(js)$": "babel-jest",
       ".*\\.(vue)$": "vue-jest"
+    },
+    "moduleNameMapper": {
+      "@/(.*)$": "<rootDir>/src/$1",
+      "^vue$": "vue/dist/vue.common.js"
     }
   },
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "jest/globals": true
     },
     "extends": [
       "plugin:vue/essential",
-      "eslint:recommended"
+      "eslint:recommended",
+      "plugin:jest/recommended"
     ],
     "parserOptions": {
       "parser": "babel-eslint"

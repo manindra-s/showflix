@@ -1,12 +1,12 @@
 <template>
   <div class="header">
-    <router-link :to="{ name: 'Home' }"><h1>ShowFlix</h1></router-link>
+    <router-link :to="{ name: 'Home' }">ShowFlix</router-link>
     <Search />
   </div>
 </template>
 
 <script>
-import Search from "./Search.vue";
+import Search from "@/components/Search.vue";
 export default {
   name: "Header",
   components: {
@@ -24,10 +24,12 @@ export default {
   align-items: center;
   padding: 5px 10px;
 }
-h1 {
+a {
   margin: 0;
+  margin-top: 2px;
   font-family: "Lobster", cursive;
-  letter-spacing: 2px;
+  font-size: 25px;
+  letter-spacing: 3px;
   padding: 3px 5px;
   border-radius: 5px;
   color: #fff;
@@ -40,7 +42,7 @@ h1 {
     justify-content: center;
     align-items: center;
   }
-  h1 {
+  a {
     margin: 8px 0;
   }
 }

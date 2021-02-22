@@ -6,33 +6,37 @@
       placeholder="Search for a Show"
       ref="search"
       v-model="inputSearch"
+      @blur="closeResult"
     />
     <!-- Rendering the search results-->
-    <!-- Using v-closable to detect outside clicks and close the search results list -->
-    <div
-      class="results"
-      v-if="!loading && inputSearch.length > 2"
-      v-closable="{ exclude: ['search'], handler: 'closeResult' }"
-    >
-    <div v-if="results.length > 0">
-      <div class="result" v-for="(result, index) in results" :key="index">
-        <!-- <router-link :to="{ name: 'Details', params: { showId: result.id } }"> -->
-          <div class="data-result" @click="handleSearch(result.id)">
-            <img v-if="result.image" :src="result.image.medium" alt="thumbnail" />
-            <p v-if="result.name">{{ result.name }}</p>
+    <div class="results" v-if="inputSearch.length > 2">
+      <div v-if="isLoadingResults">
+        Loading
+      </div>
+      <div v-else-if="!isLoading && results.length && !isLoadingResults">
+        <div class="result" v-for="(result, index) in results" :key="index">
+          <div class="data-result" @mousedown="handleSearch(result.id)">
+            <img
+              v-if="result.image"
+              :src="result.image.medium"
+              alt="thumbnail"
+            />
+            <img v-else src="http://placehold.jp/150x150.png" alt="thumbnail" />
+            <p>{{ result.name }}</p>
           </div>
-        <!-- </router-link> -->
+        </div>
       </div>
+      <div v-else-if="!isLoading && !results.length && !isLoadingResults">
+        No Such Show Exits
       </div>
-      <div v-if="!loading && inputSearch.length > 2 && results.length == 0">No Results</div>
     </div>
   </div>
 </template>
 
 //
 <script>
-import { showSearch } from "../api.js";
-import { debounce } from "lodash";
+import { fetchShowSearch } from "@/api.js";
+import { throttle } from "lodash";
 export default {
   name: "Search",
   data() {
@@ -41,35 +45,41 @@ export default {
       results: [],
       shows: [],
       error: "",
-      loading: true,
+      isLoading: true,
+      isLoadingResults: false,
     };
   },
   // watching the inputSearch query and hitting the search api when there is a change in the query
   watch: {
     inputSearch(newSearch) {
-      if (newSearch.length >= 3) {
+      if (newSearch.length > 2) {
         this.searchShow();
       }
     },
   },
+
   methods: {
-    //using debounce to reduce the number of function calls on search query change
-    searchShow: debounce(function() {
-      this.loading = true;
-      showSearch(this.inputSearch)
+    //using throttle to reduce the number of function calls on search query change
+    searchShow: throttle(function() {
+      this.isLoading = true;
+      this.isLoadingResults = true;
+      fetchShowSearch(this.inputSearch)
         .then(({ data }) => (this.results = data.map((result) => result.show)))
         .catch((err) => {
           this.error = err;
         });
-      this.loading = false;
-    }, 200),
-    handleSearch: function(id){
+      this.isLoading = false;
+      this.isLoadingResults = false;
+    }, 300),
+
+    handleSearch(id) {
       this.inputSearch = "";
       this.results = [];
-      this.$router.push({ name: 'Details', params: { showId: id } });
+      this.$router.push({ name: "Details", params: { showId: id } });
     },
-    //function corresponding to v-closable. Resetting the search query to close the search result on outside clicks.
-    closeResult: function() {
+
+    //Resetting the search query to close the search result on outside clicks.
+    closeResult() {
       this.inputSearch = "";
     },
   },
@@ -97,6 +107,7 @@ export default {
   top: 10;
   right: 10;
   width: 260px;
+  padding: 2px 5px;
   background-color: #fff;
   border-radius: 5px;
   max-height: 400px;
@@ -111,9 +122,9 @@ export default {
   padding: 2px;
   cursor: pointer;
 }
-.data-result:hover{
+.data-result:hover {
   background-color: rgb(201, 171, 4);
-  }
+}
 img {
   width: 50px;
   margin-right: 5px;

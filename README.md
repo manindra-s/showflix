@@ -22,8 +22,9 @@ Except Search component, all other components in Components folder are dumb comp
     Vue JS (Vue cli and Vue 2) -- Framework
     Axios - HTTP Client
     Vue Router - For routing between pages
-    Vue Closable - (source: https://github.com/TahaSh/vue-closable)
-    Lodash - For debounce functionality in search component
+    Lodash - For throttle functionality in search component
+    Jest - Testing framework for unit tests
+    Moxios - To mock axios in unit tests.
 
 ## Project setup
 

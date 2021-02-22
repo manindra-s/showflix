@@ -2,18 +2,17 @@
   <div v-if="popularShows">
     <div class="shows">
       <div class="show-card" v-for="(show, index) in popularShows" :key="index">
-        <router-link :to="{ name: 'Details', params: { showId: show.id } }"
-            >
-        <div class="show-image">
-          <img :src="show.image.medium || show.image.original" alt="Image" />
-        </div>
-        <div class="show-main">
-          <h3 id="name" class="data-name">{{ show.name }}</h3>
-          <div class="info">
-            <h4 id="language" class="data-language">{{ show.language }}</h4>
-            <h4 id="rating" class="data-rating">{{ show.rating.average }}</h4>
+        <router-link :to="{ name: 'Details', params: { showId: show.id } }">
+          <div class="show-image">
+            <img :src="show.image.medium || show.image.original" alt="Image" />
           </div>
-        </div>
+          <div class="show-main">
+            <h3 id="name" class="data-name">{{ show.name }}</h3>
+            <div class="info">
+              <h4 id="language" class="data-language">{{ show.language }}</h4>
+              <h4 id="rating" class="data-rating">{{ show.rating.average }}</h4>
+            </div>
+          </div>
         </router-link>
       </div>
     </div>
@@ -26,6 +25,9 @@ export default {
   props: {
     popularShows: Array,
   },
+  data() {
+    return {};
+  },
 };
 </script>
 
@@ -33,7 +35,7 @@ export default {
 .shows {
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   margin: 5px;
   background-color: rgb(236, 234, 201);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
@@ -46,12 +48,12 @@ export default {
   justify-content: center;
   align-items: center;
   margin: 7px;
-  padding:3px;
+  padding: 3px;
   border: 1px solid rgb(236, 234, 201);
 }
-.show-card:hover{
+.show-card:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
+}
 h3,
 h4 {
   margin: 5px 8px 2px 8px;
@@ -67,9 +69,30 @@ h4 {
   background-color: rgb(172, 147, 6);
   padding: 1px 5px;
 }
+a,
+img {
+  width: 100%;
+}
 @media only screen and (max-device-width: 414px) {
   .show-card {
-  border-bottom: 1px solid rgb(172, 147, 6);
+    border-bottom: 1px solid rgb(172, 147, 6);
+  }
+  #name {
+    margin: 5px 1px 2px 1px;
+    max-height: 36px;
+  }
 }
+@media only screen and (max-device-width: 360px) {
+  .shows {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  #name {
+    margin: 5px 1px 2px 1px;
+    max-height: 36px;
+    font-size: 20px;
+    font-size: 16px;
+  }
 }
 </style>
