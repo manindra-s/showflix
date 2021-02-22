@@ -3,6 +3,8 @@ import moxios from "moxios";
 import Search from "@/components/Search.vue";
 import VueRouter from 'vue-router'
 
+/* eslint-disable */
+
 const localVue = createLocalVue();
 localVue.use(VueRouter)
 const router = new VueRouter()
@@ -59,23 +61,13 @@ describe("Search performs as expected", () => {
         moxios.uninstall();
     });
 
-    it("has a search input box present", () => {
-        let searchBox = wrapper.find('input[type="text"]');
-        expect(searchBox.exists()).toBe(true);
-    })
-
-    it("search query is correctly modeled to variable", () => {
-        let searchBox = wrapper.find('input[type="text"]');
-        searchBox.setValue("suits");
-        expect(wrapper.vm.inputSearch).toBe("suits");
-    })
 
     it("gets result based on search term", (done) => {
-        let searchBox = wrapper.find('input[type="text"]');
+        let searchBox = wrapper.find('.search-input');
         searchBox.setValue("suits");
 
         moxios.wait(function () {
-            let request = moxios.requests.mostRecent();
+            let request = moxios.requests.at(0);
 
             request
                 .respondWith({
@@ -92,16 +84,16 @@ describe("Search performs as expected", () => {
     it("no results if input search is less than 3 in length", () => {
         const mockMethod = jest.spyOn(Search.methods, 'searchShow')
         let wrapper = mount(Search)
-        wrapper.find('input[type="text"]').setValue("su");
+        wrapper.find('.search-input').setValue("su");
         expect(mockMethod).not.toHaveBeenCalled()
     })
 
     it("errors out if no response from api after search", (done) => {
-        let searchBox = wrapper.find('input[type="text"]');
+        let searchBox = wrapper.find('.search-input');
         searchBox.setValue("suits");
 
         moxios.wait(function () {
-            let request = moxios.requests.mostRecent();
+            let request = moxios.requests.at(0);
 
             request
                 .respondWith({
@@ -118,6 +110,7 @@ describe("Search performs as expected", () => {
     it("resetting input search after clicking on the result", () => {
         wrapper.vm.handleSearch();
         expect(wrapper.vm.inputSearch).toBe("")
+        expect(wrapper.vm.results.length).toBe(0);
     })
 
     it("cloasing result cpntainer when clicked elsewhere", () => {

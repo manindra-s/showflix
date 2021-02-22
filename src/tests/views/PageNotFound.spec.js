@@ -11,6 +11,6 @@ describe("PageNotFound pages display correct text", () => {
     });
 
     it("display page not found", () => {
-        expect(wrapper.find('h1').text()).toContain( "404 - Page Not Found")
+        expect(wrapper.find('.error').text()).toContain( "404 - Page Not Found")
     });
 })

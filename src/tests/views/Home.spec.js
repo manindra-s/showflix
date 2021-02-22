@@ -84,37 +84,30 @@ describe('Renders Home Correctly', () => {
     })
 
     it('check api response and state update', (done) => {
-    moxios.wait(function () {
-      let request = moxios.requests.at(0)
-      request.respondWith({
-        status: 200,
-        response: shows
-      }).then(function () {
-        expect(wrapper.vm.shows.length).toBe(2);
-        expect(wrapper.findComponent({name:"MainCard"}).exists()).toBe(true);
-        done()
+      const mockMethod = jest.spyOn(Home.methods, 'sortShows')
+      moxios.wait(function () {
+        let request = moxios.requests.at(0)
+        request.respondWith({
+          status: 200,
+          response: shows
+        }).then(function () {
+            expect(wrapper.vm.shows.length).toBe(2);
+            expect(wrapper.findComponent({name:"MainCard"}).exists()).toBe(true);
+            done()
+         })
       })
     })
-  })
-
-
-  it("does not render MainCard component if no popularshows", () => {
-    wrapper.setData({
-      popularShows: [],
-    });
-    expect(wrapper.findComponent({name:"MainCard"}).exists()).toBe(false);
-  });
 
   it('test to check api error response', (done) => {
     const mockMethod = jest.spyOn(Home.methods, 'sortShows')
     moxios.wait(function () {
-      let request = moxios.requests.mostRecent()
+      let request = moxios.requests.at(0)
       request.respondWith({
         status: 400,
         response: "error"
       }).then(function () {
         expect(wrapper.vm.error).not.toBeNull();
-        expect(mockMethod).not.toHaveBeenCalled()
+        expect(mockMethod).toHaveBeenCalled()
         done()
       })
     })
@@ -125,7 +118,7 @@ describe('Renders Home Correctly', () => {
       shows: shows,
     });
     let result = wrapper.vm.sortShows(shows)
-    expect(result).toStrictEqual(showsSorted);
+    expect(result).toEqual(showsSorted);
   }); 
 
   it("sorts shows correctly if shows are already in correct order", () => {
@@ -133,6 +126,6 @@ describe('Renders Home Correctly', () => {
       shows: showsSorted,
     });
     let result = wrapper.vm.sortShows(shows)
-    expect(result).toStrictEqual(showsSorted);
+    expect(result).toEqual(showsSorted);
   }); 
 })

@@ -2,7 +2,7 @@
   ><div class="Home">
     <Header />
     <div v-if="error" class="error">
-      <h3 class="data-error">
+      <h3>
         Uh Oh! Seems the server is sleeping and not responding. Loading shows
         from temporary data.
       </h3>
@@ -64,7 +64,7 @@ export default {
 
     this.popularShows = this.sortShows(this.shows).slice(0, 12);
   },
-  //Extracting unique genres from the fetched shows using javascript's new Set method.
+  //Extracting unique genres from the fetched shows
   computed: {
     genreTitles() {
       const filterGenres = this.shows.map((shows) => shows.genres);

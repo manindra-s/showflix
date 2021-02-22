@@ -28,7 +28,7 @@ In case TV Maze API main url "http://api.tvmaze.com/shows" does not work, the ho
     Vue Router - For routing between pages
     Lodash - For throttle functionality in search component
     Jest - Testing framework for unit tests
-    Moxios - To mock axios in unit tests.
+    Moxios - To mock axios in unit tests. (src: "https://www.npmjs.com/package/moxios")
 
 ## Project setup
 
