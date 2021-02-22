@@ -2,9 +2,10 @@
   ><div class="Home">
     <Header />
     <div v-if="error" class="error">
-      <h1 class="data-error">
-        Something is Not Quite Right. Please Reload The Page
-      </h1>
+      <h3 class="data-error">
+        Uh Oh! Seems the server is sleeping and not responding. Loading shows
+        from temporary data.
+      </h3>
     </div>
     <!-- Rendering popular shows through MainCard component-->
     <div v-if="popularShows.length" class="popular-section">
@@ -15,7 +16,7 @@
     <div v-if="showGenres.length" class="genre-section">
       <h2><span>Popular Shows Based On Genre</span></h2>
       <div
-        v-for="genre in showGenres.slice(0, 6)"
+        v-for="genre in showGenres.slice(0, 5)"
         :key="genre.name"
         class="genre"
       >
@@ -23,7 +24,7 @@
           {{ genre.title }}
         </h3>
         <div>
-          <MainCard v-bind:popularShows="genre.shows.slice(0, 12)" />
+          <MainCard v-bind:popularShows="genre.shows.slice(0, 6)" />
         </div>
       </div>
     </div>
@@ -35,6 +36,7 @@ import Header from "@/components/Header";
 import MainCard from "@/components/MainCard";
 
 import { fetchAllShows } from "@/api.js";
+import showData from "@/showData.js";
 
 export default {
   name: "Home",
@@ -55,14 +57,18 @@ export default {
       .then(({ data }) => (this.shows = data))
       .catch((err) => {
         this.error = err;
+        const newShows = showData.map((shows) => shows.show);
+        this.shows = newShows;
+        this.popularShows = this.sortShows(this.shows).slice(0, 12);
       });
-    this.popularShows = this.sortShows(this.shows).slice(1, 13);
+
+    this.popularShows = this.sortShows(this.shows).slice(0, 12);
   },
   //Extracting unique genres from the fetched shows using javascript's new Set method.
   computed: {
     genreTitles() {
       const filterGenres = this.shows.map((shows) => shows.genres);
-      return Array.from(new Set(filterGenres.flat())); //returning list of unique genres from all shows
+      return [...new Set(filterGenres.flat())]; //returning list of unique genres from all shows
     },
     showGenres() {
       return this.genreTitles.map((genre) => {
@@ -98,7 +104,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 70vh;
+  text-transform: capitalize;
 }
 .genre > h3 {
   text-align: left;
