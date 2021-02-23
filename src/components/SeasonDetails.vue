@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Seasons</h1>
-    <div v-if="seasonInfo.length > 0" class="seasons">
+    <div v-if="seasonInfo.length" class="seasons">
       <div
         class="season-card"
         v-for="season in seasonInfo"

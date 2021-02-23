@@ -2,7 +2,6 @@ import {mount, createLocalVue} from '@vue/test-utils';
 import VueRouter from "vue-router";
 import moxios from "moxios";
 import Details from "@/views/Details.vue";
-import {routes} from "@/router/index.js";
 
 /* eslint-disable */
 
@@ -142,10 +141,10 @@ const seasonDetails = [
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
+const router = new VueRouter();
 
 describe('Renders Details Correctly', () => {
     let wrapper;
-    const router = new VueRouter({routes});
     beforeEach(()=>{
         moxios.install();
         wrapper = mount(Details, {

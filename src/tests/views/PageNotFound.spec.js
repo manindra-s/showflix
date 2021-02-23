@@ -1,13 +1,16 @@
-import {mount} from "@vue/test-utils";
+import {mount, createLocalVue} from "@vue/test-utils";
 import PageNotFound from "@/views/PageNotFound.vue";
-import { RouterLinkStub } from '@vue/test-utils';
+import VueRouter from "vue-router";
+
+const localVue = createLocalVue();
+localVue.use(VueRouter);
+const router = new VueRouter()
 
 describe("PageNotFound pages display correct text", () => {
     let wrapper;
     wrapper = mount(PageNotFound,{
-        stubs: {
-            RouterLink: RouterLinkStub
-        }
+        localVue,
+        router,
     });
 
     it("display page not found", () => {

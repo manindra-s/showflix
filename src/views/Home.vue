@@ -10,7 +10,7 @@
     <!-- Rendering popular shows through MainCard component-->
     <div v-if="popularShows.length" class="popular-section">
       <h2 class="data-popular"><span>Popular Shows</span></h2>
-      <MainCard v-bind:popularShows="popularShows" />
+      <MainCard :popularShows="popularShows" />
     </div>
     <!-- Rendering Genres and popular shows in each genre through MainCard component-->
     <div v-if="showGenres.length" class="genre-section">

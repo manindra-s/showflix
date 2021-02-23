@@ -4,7 +4,7 @@
       <h1 class="show-name">{{ showInfo.name }}</h1>
       <h3 class="show-genres">{{ showInfo.genres.join(" | ") }}</h3>
       <div class="details-row">
-        <h3>Premiered: {{ showInfo.premiered }}</h3>
+        <h3>Premiered: {{ showInfo.premiered || "NA" }}</h3>
         <h3 class="show-status">Status: {{ showInfo.status || "NA" }}</h3>
         <h3>Language: {{ showInfo.language || "NA" }}</h3>
         <h3>

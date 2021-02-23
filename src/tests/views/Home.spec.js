@@ -1,5 +1,5 @@
-import {mount} from '@vue/test-utils';
-import { RouterLinkStub } from '@vue/test-utils';
+import {mount, createLocalVue} from '@vue/test-utils';
+import VueRouter from "vue-router";
 import moxios from "moxios";
 import Home from "@/views/Home.vue";
 
@@ -62,16 +62,18 @@ const showsSorted = [
 },
 ]
 
+const localVue = createLocalVue();
+localVue.use(VueRouter);
+const router = new VueRouter()
 
 describe('Renders Home Correctly', () => {
     let wrapper;
     beforeEach(()=>{
         moxios.install();
         wrapper = mount(Home, {
-            stubs: {
-                RouterLink: RouterLinkStub
-            }
-        })
+          localVue,
+          router,
+      })
     })
 
     afterEach(() => {

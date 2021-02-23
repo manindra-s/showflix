@@ -1,5 +1,5 @@
 <template>
-  <div v-if="popularShows">
+  <div v-if="popularShows.length">
     <div class="shows">
       <div class="show-card" v-for="(show, index) in popularShows" :key="index">
         <router-link :to="{ name: 'Details', params: { showId: show.id } }">
