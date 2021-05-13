@@ -1,5 +1,5 @@
-<template
-  ><div class="Home">
+<template>
+  <div class="Home">
     <Header />
     <div v-if="error" class="error">
       <h3>
@@ -59,10 +59,10 @@ export default {
         this.error = err;
         const newShows = showData.map((shows) => shows.show);
         this.shows = newShows;
+      })
+      .finally(() => {
         this.popularShows = this.sortShows(this.shows).slice(0, 12);
       });
-
-    this.popularShows = this.sortShows(this.shows).slice(0, 12);
   },
   //Extracting unique genres from the fetched shows
   computed: {
